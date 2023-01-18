@@ -1,12 +1,16 @@
 import { Card } from "./components/Card";
+import { Provider } from "react-redux";
+import { store } from "./store";
 
 function App() {
   return (
-    <div className="wrapper">
-      <div className="container">
-        <Card />
+    <Provider store={store}>
+      <div className="wrapper">
+        <div className="container">
+          <Card />
+        </div>
       </div>
-    </div>
+    </Provider>
   );
 }
 

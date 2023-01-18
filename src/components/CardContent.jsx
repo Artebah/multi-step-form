@@ -1,6 +1,6 @@
 import React from "react";
 
-import { FirstStep } from "./Steps/FirstStep";
+import { FirstStep } from "../features/first-step/FirstStep";
 import { SecondStep } from "./Steps/SecondStep";
 import { ThirdStep } from "./Steps/ThrirdStep";
 import { Summary } from "./Summary";
