@@ -1,7 +1,5 @@
 import React from "react";
 
-import { StepButtons } from "./StepButtons";
-
 const Summary = () => {
   return (
     <>
@@ -44,7 +42,6 @@ const Summary = () => {
           <span>+$12/mo</span>
         </div>
       </form>
-      <StepButtons />
     </>
   );
 };

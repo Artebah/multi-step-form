@@ -1,7 +1,5 @@
 import React from "react";
 
-import { StepButtons } from "../StepButtons";
-
 import ArcadeImage from "../../assets/images/icon-arcade.svg";
 import AdvancedImage from "../../assets/images/icon-advanced.svg";
 import ProImage from "../../assets/images/icon-pro.svg";
@@ -53,7 +51,6 @@ const SecondStep = () => {
           </span>
         </div>
       </form>
-      <StepButtons />
     </>
   );
 };

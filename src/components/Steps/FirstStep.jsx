@@ -1,7 +1,6 @@
 import React from "react";
 
-import { FirstStepForm } from "./FirstStepForm";
-import { StepButtons } from "../../components/StepButtons";
+import { FirstStepForm } from "../FirstStepForm";
 
 const FirstStep = () => {
   return (
@@ -13,7 +12,6 @@ const FirstStep = () => {
         </h2>
       </div>
       <FirstStepForm />
-      <StepButtons />
     </>
   );
 };

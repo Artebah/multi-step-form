@@ -365,6 +365,27 @@ body {
 .form-stepone-content {
   // .form-stepone-content__label
 
+  &__text {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 700;
+    margin: 0px 0px 9px 0px;
+    @media (max-width: 767px) {
+      margin: 0px 0px 5px 0px;
+    }
+
+    .required-alert {
+      color: $strawberryRed;
+      font-size: 14px;
+    }
+
+    p {
+      text-transform: capitalize;
+      font-size: 14px;
+      font-weight: 400;
+      color: $marineBlue;
+    }
+  }
   &__label {
     &:not(:last-child) {
       display: block;
@@ -378,26 +399,7 @@ body {
         border: 1px solid $strawberryRed;
       }
     }
-    &-text {
-      display: flex;
-      justify-content: space-between;
-      font-weight: 700;
-      .required-alert {
-        color: $strawberryRed;
-        font-size: 14px;
-      }
 
-      p {
-        text-transform: capitalize;
-        font-size: 14px;
-        margin: 0px 0px 9px 0px;
-        font-weight: 400;
-        color: $marineBlue;
-        @media (max-width: 767px) {
-          margin: 0px 0px 5px 0px;
-        }
-      }
-    }
     input {
       color: $marineBlue;
       font-weight: 500;

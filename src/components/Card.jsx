@@ -6,7 +6,7 @@ const Card = () => {
   return (
     <div className="card">
       <div className="card__container">
-        <SideBar activeStep={0} />
+        <SideBar />
         <CardContent />
       </div>
     </div>

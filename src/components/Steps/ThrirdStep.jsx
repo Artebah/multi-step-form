@@ -1,7 +1,5 @@
 import React from "react";
 
-import { StepButtons } from "../StepButtons";
-
 const ThirdStep = () => {
   return (
     <>
@@ -66,7 +64,6 @@ const ThirdStep = () => {
           </label>
         </div>
       </form>
-      <StepButtons />
     </>
   );
 };
