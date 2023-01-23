@@ -297,7 +297,7 @@ body {
   border: 1px solid $lightGray;
   border-radius: 10px;
   cursor: pointer;
-  transition: all 0.3s ease 0s;
+  transition: all 0.2s ease 0s;
   &:hover {
     border: 1px solid $marineBlue;
   }
@@ -443,10 +443,17 @@ body {
     h2 {
       font-weight: 500;
       color: $marineBlue;
+      text-transform: capitalize;
     }
     h3 {
       margin: 8px 0px 0px 0px;
       font-size: 14px;
+      color: $coolGray;
+    }
+    p {
+      font-size: 12px;
+      margin: 7px 0px 0px 0px;
+      color: $marineBlue;
     }
   }
 
