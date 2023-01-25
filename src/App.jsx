@@ -1,15 +1,20 @@
 import { Card } from "./components/Card";
+
 import { Provider } from "react-redux";
-import { store } from "./store";
+import { store, persistor } from "./store";
+
+import { PersistGate } from "redux-persist/integration/react";
 
 function App() {
   return (
     <Provider store={store}>
-      <div className="wrapper">
-        <div className="container">
-          <Card />
+      <PersistGate persistor={persistor} loading={null}>
+        <div className="wrapper">
+          <div className="container">
+            <Card />
+          </div>
         </div>
-      </div>
+      </PersistGate>
     </Provider>
   );
 }
