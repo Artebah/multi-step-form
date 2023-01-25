@@ -1,6 +1,10 @@
 import React from "react";
+import { useSummary } from "../hooks/useSummary";
 
 const Summary = () => {
+  const { addons, planName, planPrice, planType, buttonChangeInfoHandle, getTotalPrice } =
+    useSummary();
+
   return (
     <>
       <div className="card-content__text">
@@ -13,33 +17,29 @@ const Summary = () => {
         <div className="form-stepfourth-content__prices">
           <div className="form-stepfourth-content__price main-price-fourth">
             <div className="main-price-fourth__left">
-              <h2>Arcade (Monthly)</h2>
-              <button>Change</button>
+              <h2>
+                {planName} ({planType})
+              </h2>
+              <button onClick={buttonChangeInfoHandle}>Change</button>
             </div>
             <div className="main-price-fourth__right">
-              <span>$9/mo</span>
+              <span>{planPrice}</span>
             </div>
           </div>
-          <div className="form-stepfourth-content__price price-fourth">
-            <div className="price-fourth__left">
-              <h3>Online service</h3>
+          {addons.map((addon) => (
+            <div key={addon.id} className="form-stepfourth-content__price price-fourth">
+              <div className="price-fourth__left">
+                <h3>{addon.title}</h3>
+              </div>
+              <div className="price-fourth__right">
+                <span>{addon.price}</span>
+              </div>
             </div>
-            <div className="price-fourth__right">
-              <span>+$1/mo</span>
-            </div>
-          </div>
-          <div className="form-stepfourth-content__price price-fourth">
-            <div className="price-fourth__left">
-              <h3>Larger storage</h3>
-            </div>
-            <div className="price-fourth__right">
-              <span>+$2/mo</span>
-            </div>
-          </div>
+          ))}
         </div>
         <div className="form-stepfourth-content__total">
-          <h3>Total (per month)</h3>
-          <span>+$12/mo</span>
+          <h3>Total (per {planType.slice(0, -2)})</h3>
+          <span>{getTotalPrice()}</span>
         </div>
       </form>
     </>

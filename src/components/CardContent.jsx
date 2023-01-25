@@ -1,6 +1,6 @@
 import { FirstStep } from "./Steps/FirstStep";
 import { SecondStep } from "./Steps/SecondStep";
-import { ThirdStep } from "./Steps/ThrirdStep";
+import { ThirdStep } from "./Steps/ThirdStep";
 import { Summary } from "./Summary";
 import { ThankYou } from "./ThankYou";
 import { StepButtons } from "./StepButtons";
