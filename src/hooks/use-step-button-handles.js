@@ -19,7 +19,6 @@ function useStepButtonHandles({ isFirstStep, isLastStep, setIsConfirmed }) {
       let blocked = false;
       const EMAIL_REGEXP =
         /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu;
-      const PHONE_REGEXP = /^\+?([0-9]{2})\)?[-. ]?([0-9]{4})[-. ]?([0-9]{4})$/;
 
       for (const key in firstStepValues) {
         if (Object.hasOwnProperty.call(firstStepValues, key)) {
@@ -42,10 +41,7 @@ function useStepButtonHandles({ isFirstStep, isLastStep, setIsConfirmed }) {
                 requiredAlertMessage: "Email is incorrect",
               })
             );
-          } else if (
-            key === "phone" &&
-            (!PHONE_REGEXP.test(element.value) || element.value.length < 10)
-          ) {
+          } else if (key === "phone" && element.value.length < 10) {
             blocked = true;
             dispatch(
               addInputAlert({

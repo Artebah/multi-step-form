@@ -5,9 +5,16 @@ import AdvancedImage from "../../assets/images/icon-advanced.svg";
 import ProImage from "../../assets/images/icon-pro.svg";
 
 import { useDispatch, useSelector } from "react-redux";
-import { selectPlan, setPlan, setPlanType } from "../../features/plan/plan-slice";
+import {
+  selectPlan,
+  setPlanName,
+  setPlanType,
+  setPlanPrice,
+} from "../../features/plan/plan-slice";
 
 const SecondStep = () => {
+  const dispatch = useDispatch();
+  const { planName, planType, planPrice } = useSelector(selectPlan);
   const [isSwitcherBlocked, setIsSwitcherBlocked] = React.useState(false);
 
   const plans = [
@@ -15,7 +22,6 @@ const SecondStep = () => {
       name: "arcade",
       monthlyPrice: "$9/mo",
       yearlyPrice: "$90/yr",
-
       imageSrc: ArcadeImage,
       altImg: "the arcade plan",
     },
@@ -35,22 +41,34 @@ const SecondStep = () => {
     },
   ];
 
-  const dispatch = useDispatch();
-  const { plan, planType } = useSelector(selectPlan);
-
-  const planHandle = (plan) => {
-    dispatch(setPlan(plan));
+  const planHandle = (planObj) => {
+    if (planObj.name !== planName) {
+      dispatch(setPlanName(planObj.name));
+      if (planType === "yearly") {
+        dispatch(setPlanPrice(planObj.yearlyPrice));
+      } else {
+        dispatch(setPlanPrice(planObj.monthlyPrice));
+      }
+    }
   };
-  const planTypeHandle = (e, type) => {
+
+  const planTypeHandle = () => {
     if (!isSwitcherBlocked) {
       setIsSwitcherBlocked(true);
       setTimeout(() => setIsSwitcherBlocked(false), 400);
-      if (!type) {
-        planType === "monthly"
-          ? dispatch(setPlanType("yearly"))
-          : dispatch(setPlanType("monthly"));
+
+      if (planType === "monthly") {
+        const priceNumber = planPrice.match(/\d+/)[0] * 10;
+        const yearlyPrice = "$" + priceNumber + "/yr";
+
+        dispatch(setPlanType("yearly"));
+        dispatch(setPlanPrice(yearlyPrice));
       } else {
-        dispatch(setPlanType(type));
+        const priceNumber = planPrice.match(/\d+/)[0] / 10;
+        const monthlyPrice = "$" + priceNumber + "/mo";
+
+        dispatch(setPlanType("monthly"));
+        dispatch(setPlanPrice(monthlyPrice));
       }
     }
   };
@@ -68,9 +86,9 @@ const SecondStep = () => {
           {plans.map((planObj) => (
             <div
               key={planObj.name}
-              onClick={() => planHandle(planObj.name)}
+              onClick={() => planHandle(planObj)}
               className={`form-steptwo-content__plan form-card ${
-                planObj.name === plan ? "selected" : ""
+                planObj.name === planName ? "selected" : ""
               }`}>
               <img src={planObj.imageSrc} alt={planObj.altImg} />
               <div className="form-card__text">
@@ -83,20 +101,17 @@ const SecondStep = () => {
             </div>
           ))}
         </div>
-        <div className="form-steptwo-content__switch steptwo-switch">
-          <span
-            onClick={(e) => planTypeHandle(e, "monthly")}
-            className={`steptwo-switch__type ${planType === "monthly" && "active"}`}>
+        <div
+          onClick={planTypeHandle}
+          className="form-steptwo-content__switch steptwo-switch">
+          <span className={`steptwo-switch__type ${planType === "monthly" && "active"}`}>
             Monthly
           </span>
           <div
-            onClick={(e) => planTypeHandle(e)}
             className={`steptwo-switch__toggle ${planType === "yearly" ? "active" : ""}`}>
             <span></span>
           </div>
-          <span
-            onClick={(e) => planTypeHandle(e, "yearly")}
-            className={`steptwo-switch__type ${planType === "yearly" && "active"}`}>
+          <span className={`steptwo-switch__type ${planType === "yearly" && "active"}`}>
             Yearly
           </span>
         </div>
